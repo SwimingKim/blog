@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.swimingkim.github.io/blog/sitemap.xml
+Sitemap: https://swimingkim.github.io/blog/sitemap.xml
