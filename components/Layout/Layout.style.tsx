@@ -21,6 +21,7 @@ export const HeaderWrapper = styled("header")`
   top: 0;
   left: 0;
   box-sizing: border-box;
+  background-color: var(--bg-color);
 
   padding-left: ${PAGE_LEFT_PADDING};
   padding-right: ${PAGE_RIGHT_PADDING};
