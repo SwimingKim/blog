@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-print(load_dotenv)
 print("arg", len(sys.argv))
 
 if len(sys.argv) != 4:
