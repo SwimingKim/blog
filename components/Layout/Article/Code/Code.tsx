@@ -78,7 +78,7 @@ export default function Code(props: CodeBlock) {
     <CodeWrapper>
       <TopBar>
         <TopBarLeftCol>
-          <CodeCaption>{caption}</CodeCaption>
+          <CodeCaption>{lang}</CodeCaption>
         </TopBarLeftCol>
         <TopbarRightCol>
           <CopyButton onClick={onClickCopyCode}>Copy</CopyButton>

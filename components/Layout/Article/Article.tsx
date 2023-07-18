@@ -142,6 +142,7 @@ export default function Article() {
           fullPage={true}
           showCollectionViewDropdown={false}
           showTableOfContents={true}
+          minTableOfContentsItems={2}
           recordMap={recordMap}
           components={components}
         />
