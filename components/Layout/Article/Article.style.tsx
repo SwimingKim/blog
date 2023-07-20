@@ -20,7 +20,7 @@ export const StyledNotionRenderer = styled(NotionRenderer)`
   main {
     display: flex;
     width: 100% !important;
-    overflow: hidden !important;
+    /* overflow: hidden !important; */
   }
   .notion-page-scroller {
     min-height: inherit !important;
