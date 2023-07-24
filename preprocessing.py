@@ -1,6 +1,9 @@
 import glob
 import xml.etree.cElementTree as ET
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def add_element(url):
     global root
