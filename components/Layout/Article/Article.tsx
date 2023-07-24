@@ -140,8 +140,9 @@ export default function Article() {
           darkMode={true}
           disableHeader={true}
           fullPage={true}
-          showCollectionViewDropdown={true}
+          showCollectionViewDropdown={false}
           showTableOfContents={true}
+          minTableOfContentsItems={2}
           recordMap={recordMap}
           components={components}
         />

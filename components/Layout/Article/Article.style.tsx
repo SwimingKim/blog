@@ -10,6 +10,7 @@ export const ArticleWrapper = styled("article")`
 
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 3rem;
 `;
 
@@ -17,8 +18,9 @@ export const StyledNotionRenderer = styled(NotionRenderer)`
   display: flex;
   min-height: 0px !important;
   main {
-    /* width: 100% !important; */
-    overflow: hidden !important;
+    display: flex;
+    width: 100% !important;
+    /* overflow: hidden !important; */
   }
   .notion-page-scroller {
     min-height: inherit !important;
@@ -46,7 +48,7 @@ export const StyledNotionRenderer = styled(NotionRenderer)`
 export const NavWrapper = styled("div")`
   @media (min-width: ${breakpoint.desktop}) {
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     justify-content: space-between;
   }
 `;
