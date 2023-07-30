@@ -19,6 +19,14 @@ const Code = dynamic(() => import("./Code"), {
   ssr: false,
 });
 
+const UtterancesComponent = dynamic(
+  () => {
+    return import("components/Utterances")
+  },
+  { ssr: false }
+)
+
+
 // const Code = dynamic(() =>
 //   import('react-notion-x/build/third-party/code').then(async (m) => {
 //     // add / remove any prism syntaxes here
@@ -135,17 +143,20 @@ export default function Article() {
   return (
     <ArticleWrapper>
       {recordMap ? (
-        <StyledNotionRenderer
-          pageAside={<PageAside />}
-          darkMode={true}
-          disableHeader={true}
-          fullPage={true}
-          showCollectionViewDropdown={false}
-          showTableOfContents={true}
-          minTableOfContentsItems={2}
-          recordMap={recordMap}
-          components={components}
-        />
+        <>
+          <StyledNotionRenderer
+            pageAside={<PageAside />}
+            darkMode={true}
+            disableHeader={true}
+            fullPage={true}
+            showCollectionViewDropdown={false}
+            showTableOfContents={true}
+            minTableOfContentsItems={2}
+            recordMap={recordMap}
+            components={components}
+          />
+          <UtterancesComponent />
+        </>
       ) : router.isFallback ? (
         <CircularProgress />
       ) : (
