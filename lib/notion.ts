@@ -171,6 +171,17 @@ export const getSections = async () => {
   }
 };
 
+export const getSections_V2 = async (pages: ContentPage[]) => {
+  try {
+    if (!pages) {
+      throw new Error("get sections error");
+    }
+    return convertPagesToSections(pages);
+  } catch (e) {
+    throw new Error("FETCH SECTION ERROR");
+  }
+};
+
 export const fetchRecordMap = async (pageID: string) => {
   try {
     const recordMap: ExtendedRecordMap = await recordMapClient.getPage(pageID);

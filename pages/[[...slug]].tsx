@@ -1,4 +1,4 @@
-import { getSections, fetchRecordMap } from "lib/notion";
+import { getSections, fetchRecordMap, getSections_V2 } from "lib/notion";
 import { GetStaticProps } from "next";
 import { Section } from "types/content";
 import { ExtendedRecordMap } from "notion-types";
@@ -10,6 +10,7 @@ import OpenGraphHead from "components/OpenGraphHead";
 import { fetchAllPages } from "../lib/notion";
 import { pageViewGA } from "../hooks/usePageViewEffect";
 import { useRouter } from "next/router";
+import { ContentPage } from "types/notion";
 
 interface Props {
   pageID: string;
@@ -25,6 +26,7 @@ interface PageContextData extends Props {
 
 export const PageContext = createContext<PageContextData>(null as any);
 
+let loaded_pages = [] as ContentPage[];
 export default function Page(props: Props) {
   const router = useRouter();
   const { pageID, sections, pageTitle, currentSection } = props;
@@ -56,8 +58,7 @@ export const getStaticPaths = async () => {
   const renderMode = config.renderMode as "SSG" | "ISR" | "PRE_ISR";
   if (renderMode === "SSG" || renderMode === "PRE_ISR") {
     try {
-      const pages = await fetchAllPages();
-      console.log(`pre-render page count : ${pages.length}`);
+      let pages = loaded_pages;
       const paths = pages.map((page) => ({ params: { slug: [page.id] } }));
       paths.push({
         params: {
@@ -94,6 +95,11 @@ function isRejected<T>(
 export const getStaticProps: GetStaticProps = async (ctx) => {
   const { slug } = ctx.params as { slug?: string[] };
 
+  if (loaded_pages.length == 0) {
+    loaded_pages = await fetchAllPages();
+    console.log(`pre-render page count : ${loaded_pages.length}`);
+  }
+
   const homePageID = process.env.NOTION_HOMEPAGE_ID as string;
   let pageID = Array.isArray(slug) ? slug[0] : homePageID;
   if (pageID.indexOf("index") != -1) pageID = homePageID;
@@ -101,7 +107,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   const isContentPage = Array.isArray(slug) && slug.length === 1;
 
   const [sectionsReq, recordMapReq] = await Promise.allSettled([
-    getSections(),
+    getSections_V2(loaded_pages),
     fetchRecordMap(pageID),
   ]);
 
