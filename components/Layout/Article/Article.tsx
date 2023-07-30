@@ -3,7 +3,7 @@ import {
   NavWrapper,
   StyledNotionRenderer,
 } from "./Article.style";
-import { useContext, useMemo } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { Section } from "types/content";
 import dynamic from "next/dynamic";
 import { CodeBlock } from "../../../types/notion";
@@ -117,6 +117,7 @@ function getNearChapters(pageID: string, currentSection: Section) {
 export default function Article() {
   const router = useRouter();
 
+  const [pagePath, setPagePath] = useState("");
   const { pageID, recordMap, currentSection } = useContext(PageContext);
 
   const components = useMemo(
@@ -129,6 +130,10 @@ export default function Article() {
     }),
     []
   )
+
+  useEffect(() => {
+    setPagePath(`${process.env.GITHUB_REPOSITORY?.split("/")[1]}/${pageID}`)
+  }, [pageID]);
 
   const { prevChapter, nextChapter } = useMemo(() => {
     if (!currentSection) {
@@ -165,7 +170,7 @@ export default function Article() {
         <EmptyArticle />
       )}
 
-      <UtterancesComponent />
+      <UtterancesComponent issueTerm={pagePath}/>
       
       <NavWrapper>
         {prevChapter && <NearPageButton type={"PREV"} {...prevChapter} />}

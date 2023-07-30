@@ -2,6 +2,10 @@ import styled from "@emotion/styled";
 import { url } from "inspector";
 import { useEffect, useRef, useState } from "react"
 
+type Props = {
+  issueTerm: string
+}
+
 const CommentRoot = styled.div`
 width: 100% !important;
 
@@ -19,28 +23,33 @@ width: 100% !important;
 }
 `
 
-const Utterances: React.FC = () => {
+const Utterances: React.FC<Props> = ({ issueTerm }) => {
 
   const scriptElement = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (scriptElement.current?.children.length != 0) return;
+    console.log("here")
+    if (scriptElement.current == null) return;
+    console.log("item_count", issueTerm, scriptElement.current.children.length)
+
+    if (scriptElement.current.children.length > 0) {
+      scriptElement.current.removeChild(scriptElement.current.children[0]);
+    }
 
     const script = document.createElement("script")
     const savedTheme = window.localStorage.getItem("theme");
     const theme = savedTheme == "dark" ? "github-dark" : "github-light"
-    const issue_url = window.location.pathname;
 
     script.setAttribute("src", "https://utteranc.es/client.js")
     script.setAttribute("repo", `${process.env.COMMENT_REPOSITORY}`)
-    script.setAttribute("issue-term", issue_url)
+    script.setAttribute("issue-term", issueTerm)
     script.setAttribute("label", "Comment")
     script.setAttribute("theme", theme)
     script.setAttribute("crossorigin", "anonymous")
     script.setAttribute("async", `true`)
 
     scriptElement.current?.appendChild(script)
-  }, [])
+  }, [issueTerm])
   
   return (
     <>
