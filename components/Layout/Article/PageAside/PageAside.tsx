@@ -10,9 +10,9 @@ export default function PageAside() {
   return (
     <PageAsideWrapper>
       {/* 여기에 배너를 넣으면 됩니다 */}
-      <Link href={`/${homePageID}`}>
+      {/* <Link href={`/${homePageID}`}>
         <Image alt={"thumb"} src={thumbnail} width={220} />
-      </Link>
+      </Link> */}
     </PageAsideWrapper>
   );
 }

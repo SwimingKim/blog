@@ -57,5 +57,9 @@ export const MainWrapper = styled("main")`
     /* width: 100vw; */
     position: absolute;
     padding-left: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
   }
 `;
