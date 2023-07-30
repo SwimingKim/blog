@@ -51,14 +51,18 @@ export const SidebarWrapper = styled("aside")`
 export const MainWrapper = styled("main")`
   flex: 1;
   padding-top: ${HEADER_HEIGHT};
-  padding-left: ${ASIDE_WIDTH};
+
+  @media (min-width: ${breakpoint.desktop}) {
+    width: 100%;
+    padding-left: ${ASIDE_WIDTH};
+  }
 
   @media (max-width: ${breakpoint.desktop}) {
-    /* width: 100vw; */
+    /* width: 100%; */
     position: absolute;
-    padding-left: 0;
-    left: 0;
-    right: 0;
+    /* padding-left: 0; */
+    /* left: 0;
+    right: 0; */
     display: flex;
     justify-content: center;
   }
