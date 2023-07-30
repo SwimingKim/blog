@@ -132,7 +132,7 @@ export default function Article() {
   )
 
   useEffect(() => {
-    setPagePath(`${process.env.GITHUB_REPOSITORY?.split("/")[1]}/${pageID}`)
+    setPagePath(`/${process.env.GITHUB_REPOSITORY?.split("/")[1]}/${pageID}`)
   }, [pageID]);
 
   const { prevChapter, nextChapter } = useMemo(() => {
