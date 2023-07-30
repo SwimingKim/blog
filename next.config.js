@@ -15,6 +15,7 @@ const nextConfig = {
     NOTION_HOMEPAGE_ID: process.env.NOTION_HOMEPAGE_ID,
     GA_TRACKING_ID: process.env.GA_TRACKING_ID,
     GITHUB_REPOSITORY: process.env.GITHUB_REPOSITORY,
+    COMMENT_REPOSITORY: process.env.COMMENT_REPOSITORY,
     ANALYZE: process.env.ANALYZE,
   },
   webpack: (config) => {

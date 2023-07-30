@@ -54,6 +54,8 @@ export const MainWrapper = styled("main")`
   padding-left: ${ASIDE_WIDTH};
 
   @media (max-width: ${breakpoint.desktop}) {
+    /* width: 100vw; */
+    position: absolute;
     padding-left: 0;
   }
 `;

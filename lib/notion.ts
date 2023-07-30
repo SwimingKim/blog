@@ -85,10 +85,43 @@ const convertContentPage = (pageObject: PageObjectResponse) => {
 
 export const fetchAllPages = async () => {
   try {
-    const queryData = await officalClient.databases.query({
-      database_id: DATABASE_ID as string,
-    });
-    const contents = queryData.results.map((pageObject) => {
+    let is_start = true;
+    let next_cursor = null;
+    let page_results = [] as any[];
+    while (is_start || next_cursor != null) {
+      let params = {
+        database_id: DATABASE_ID as string,
+        page_size: 100,
+        filter: {
+          and: [
+            {
+              property: 'Public',
+              checkbox: {
+                equals: true,
+              },
+            },
+          ]
+        }
+      } as any;
+
+      if (next_cursor != null) params = {
+        ...params,
+        start_cursor: next_cursor,
+      }
+      const queryData = await officalClient.databases.query(params);
+      page_results = [
+        ...page_results,
+        ...queryData.results
+      ]
+
+      next_cursor = queryData.next_cursor
+      console.log(queryData.next_cursor, queryData.results.length)
+
+      is_start = false;
+    }
+
+    console.log("items", page_results.length)
+    const contents = page_results.map((pageObject) => {
       return convertContentPage(pageObject as PageObjectResponse);
     });
     return contents;

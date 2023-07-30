@@ -11,7 +11,7 @@ export default function PageAside() {
     <PageAsideWrapper>
       {/* 여기에 배너를 넣으면 됩니다 */}
       <Link href={`/${homePageID}`}>
-        {/* <Image alt={"thumb"} src={thumbnail} width={220} /> */}
+        <Image alt={"thumb"} src={thumbnail} width={220} />
       </Link>
     </PageAsideWrapper>
   );

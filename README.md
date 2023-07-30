@@ -9,6 +9,7 @@
 | NOTION_HISTORY_ID | notification page id | **** |
 | GA_TRACKING_ID |  | **** |
 | GITHUB_REPOSITORY | github repository information | swimingkim/blog |
+| COMMENT_REPOSITORY | comments repository information | swimingkim/comments |
 | COMMIT_EMAIL | github actions commit email | rumex13@naver.com |
 | ANALYZE |  | false |
 

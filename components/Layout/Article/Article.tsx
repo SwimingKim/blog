@@ -126,6 +126,30 @@ export default function Article() {
       Equation,
       Pdf,
       Modal,
+      pageLink: ({
+        href,
+        as,
+        passHref,
+        prefetch,
+        replace,
+        scroll,
+        shallow,
+        locale,
+        ...props
+      }) => (
+        <Link
+          href={href}
+          as={as}
+          passHref={passHref}
+          prefetch={prefetch}
+          replace={replace}
+          scroll={scroll}
+          shallow={shallow}
+          locale={locale}
+        >
+          <a {...props} />
+        </Link>
+      ),
     }),
     []
   )
@@ -146,6 +170,9 @@ export default function Article() {
         <>
           <StyledNotionRenderer
             pageAside={<PageAside />}
+            mapPageUrl={(page_id) => {
+              return `/blog/${page_id}`
+            }}
             darkMode={true}
             disableHeader={true}
             fullPage={true}
@@ -155,13 +182,15 @@ export default function Article() {
             recordMap={recordMap}
             components={components}
           />
-          <UtterancesComponent />
         </>
       ) : router.isFallback ? (
         <CircularProgress />
       ) : (
         <EmptyArticle />
       )}
+
+      <UtterancesComponent />
+      
       <NavWrapper>
         {prevChapter && <NearPageButton type={"PREV"} {...prevChapter} />}
         {nextChapter && <NearPageButton type={"NEXT"} {...nextChapter} />}
