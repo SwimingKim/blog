@@ -58,6 +58,8 @@ export const getStaticPaths = async () => {
   const renderMode = config.renderMode as "SSG" | "ISR" | "PRE_ISR";
   if (renderMode === "SSG" || renderMode === "PRE_ISR") {
     try {
+      await loadPages();
+      
       let pages = loaded_pages;
       const paths = pages.map((page) => ({ params: { slug: [page.id] } }));
       paths.push({
@@ -92,13 +94,17 @@ function isRejected<T>(
   return req.status === "rejected";
 }
 
-export const getStaticProps: GetStaticProps = async (ctx) => {
-  const { slug } = ctx.params as { slug?: string[] };
-
+const loadPages = async () => {
   if (loaded_pages.length == 0) {
     loaded_pages = await fetchAllPages();
     console.log(`pre-render page count : ${loaded_pages.length}`);
   }
+}
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  const { slug } = ctx.params as { slug?: string[] };
+
+  await loadPages();
 
   const homePageID = process.env.NOTION_HOMEPAGE_ID as string;
   let pageID = Array.isArray(slug) ? slug[0] : homePageID;

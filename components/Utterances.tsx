@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { url } from "inspector";
 import { useEffect, useRef, useState } from "react"
 
 const CommentRoot = styled.div`
@@ -28,10 +29,11 @@ const Utterances: React.FC = () => {
     const script = document.createElement("script")
     const savedTheme = window.localStorage.getItem("theme");
     const theme = savedTheme == "dark" ? "github-dark" : "github-light"
+    const issue_url = window.location.pathname;
 
     script.setAttribute("src", "https://utteranc.es/client.js")
     script.setAttribute("repo", `${process.env.COMMENT_REPOSITORY}`)
-    script.setAttribute("issue-term", "pathname")
+    script.setAttribute("issue-term", issue_url)
     script.setAttribute("label", "Comment")
     script.setAttribute("theme", theme)
     script.setAttribute("crossorigin", "anonymous")
