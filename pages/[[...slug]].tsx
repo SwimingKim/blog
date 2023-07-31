@@ -56,7 +56,8 @@ export default function Page(props: Props) {
 
 export const getStaticPaths = async () => {
   const renderMode = config.renderMode as "SSG" | "ISR" | "PRE_ISR";
-  if (renderMode === "SSG" || renderMode === "PRE_ISR") {
+  if (true) {
+  // if (renderMode === "SSG" || renderMode === "PRE_ISR") {
     try {
       await loadPages();
       
