@@ -4,7 +4,8 @@ import { breakpoint } from "lib/breakpoint";
 import { ARTICLE_HORIZON_PADDING, ARTICLE_VERTICAL_PADDING } from "lib/layout";
 
 export const ArticleWrapper = styled("article")`
-  padding: ${ARTICLE_HORIZON_PADDING} ${ARTICLE_VERTICAL_PADDING};
+  padding: ${ARTICLE_HORIZON_PADDING} 0;
+  /* padding: ${ARTICLE_HORIZON_PADDING} ${ARTICLE_VERTICAL_PADDING}; */
   min-height: none;
   box-sizing: border-box;
 
@@ -19,7 +20,7 @@ export const StyledNotionRenderer = styled(NotionRenderer)`
   min-height: 0px !important;
   main {
     display: flex;
-    width: 100% !important;
+    /* width: 100% !important; */
     /* overflow: hidden !important; */
   }
   .notion-page-scroller {

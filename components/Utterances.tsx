@@ -7,7 +7,7 @@ type Props = {
 }
 
 const CommentRoot = styled.div`
-width: 100% !important;
+/* width: 100% !important; */
 
 .comments {
   height: fit-content;

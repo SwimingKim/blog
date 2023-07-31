@@ -58,12 +58,12 @@ export const MainWrapper = styled("main")`
   }
 
   @media (max-width: ${breakpoint.desktop}) {
-    /* width: 100%; */
-    position: absolute;
+    width: fit-content;
+    /* position: absolute; */
     /* padding-left: 0; */
     /* left: 0;
     right: 0; */
-    display: flex;
-    justify-content: center;
+    /* display: flex;
+    justify-content: center; */
   }
 `;
