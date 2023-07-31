@@ -1,6 +1,6 @@
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-});
+// const withBundleAnalyzer = require("@next/bundle-analyzer")({
+//   enabled: process.env.ANALYZE === "true",
+// });
 
 const repo_info = process.env.GITHUB_REPOSITORY;
 /** @type {import('next').NextConfig} */
@@ -34,9 +34,10 @@ const nextConfig = {
 // module.exports = withPlugins([], nextConfig);
 
 module.exports = () => {
-  const plugins = [withBundleAnalyzer];
-  const config = plugins.reduce((acc, next) => next(acc), {
-    ...nextConfig,
-  });
-  return config;
+  // const plugins = [withBundleAnalyzer];
+  // const config = plugins.reduce((acc, next) => next(acc), {
+  //   ...nextConfig,
+  // });
+  // return config;
+  return nextConfig;
 };
