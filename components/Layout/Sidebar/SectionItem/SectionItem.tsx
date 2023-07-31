@@ -26,7 +26,7 @@ export default function SectionItem(props: Props) {
   return (
     <SectionItemWrapper>
       <StyledAccordion
-        isSelected={isSelected}
+        selected={isSelected}
         TransitionProps={{ unmountOnExit: true }}
         expanded={isSelected}
         onChange={() => onClickSection(index)}

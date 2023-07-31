@@ -160,6 +160,7 @@ export default function Article() {
             showCollectionViewDropdown={false}
             showTableOfContents={true}
             minTableOfContentsItems={2}
+            isImageZoomable={true}
             recordMap={recordMap}
             components={components}
           />

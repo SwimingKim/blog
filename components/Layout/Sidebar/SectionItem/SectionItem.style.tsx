@@ -5,7 +5,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 
 export const SectionItemWrapper = styled("div")``;
 
-export const StyledAccordion = styled(Accordion)<{ isSelected: boolean }>`
+export const StyledAccordion = styled(Accordion)<{ selected: boolean }>`
   background-color: inherit;
   padding-left: 0px;
   color: var(--fg-color);
@@ -13,7 +13,7 @@ export const StyledAccordion = styled(Accordion)<{ isSelected: boolean }>`
 
   /* 현재 선택된 아코디언 백그라운드 색 부여 */
   ${(props) =>
-    props.isSelected &&
+    props.selected &&
     css`
       .MuiAccordionSummary-root {
         background-color: var(--primary-tinted-color);

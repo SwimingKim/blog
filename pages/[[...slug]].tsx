@@ -39,6 +39,8 @@ export default function Page(props: Props) {
   }
 
   useEffect(() => {
+    console.log(router.basePath, router.pathname)
+
     if (process.env.NODE_ENV === "development") return;
     pageViewGA({
       pagePath: `/${pageID}`,
