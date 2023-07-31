@@ -164,14 +164,13 @@ export default function Article() {
             recordMap={recordMap}
             components={components}
           />
+          <UtterancesComponent issueTerm={pagePath}/>
         </>
       ) : router.isFallback ? (
         <CircularProgress />
       ) : (
         <EmptyArticle />
       )}
-
-      <UtterancesComponent issueTerm={pagePath}/>
       
       <NavWrapper>
         {prevChapter && <NearPageButton type={"PREV"} {...prevChapter} />}

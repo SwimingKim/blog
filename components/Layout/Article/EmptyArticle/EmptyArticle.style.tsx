@@ -1,9 +1,11 @@
 import styled from "@emotion/styled";
 
 export const EmptyArticleWrapper = styled("div")`
+  width: 100vw !important;
   display: flex;
   flex-direction: column;
   color: var(--fg-color);
+  align-items: center;
 
   svg {
     font-size: var(--font-h1);

@@ -1,7 +1,7 @@
 {
   "site": "devskim blog",
-  "description": "Notion + WebBook = Notbook",
-  "renderMode": "PRE_ISR",
+  "description": "Devskim Tech Blog",
+  "renderMode": "ISR",
   "menus": [],
   "profile": {
     "name": "김수영",
