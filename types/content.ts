@@ -6,6 +6,7 @@ export interface Section {
 
 export interface Chapter {
   id: string;
+  slug: string;
   last_edited_time: string;
   title: string; // chapter 이름
   index: number;

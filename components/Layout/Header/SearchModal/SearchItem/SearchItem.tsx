@@ -13,7 +13,7 @@ interface Props extends Chapter {
 
 export default function SearchItem(props: Props) {
   const router = useRouter();
-  const { search, id, title, section_title, section_index } = props;
+  const { search, slug, title, section_title, section_index } = props;
 
   if (!search || !title) return null;
 
@@ -24,7 +24,7 @@ export default function SearchItem(props: Props) {
   if (!Array.isArray(matchString)) return null;
 
   const onClickItem = () => {
-    router.push(`/${id}`);
+    router.push(`/${slug}`);
   };
 
   return (

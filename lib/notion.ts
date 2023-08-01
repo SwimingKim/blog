@@ -18,6 +18,7 @@ const convertContentPage = (pageObject: PageObjectResponse) => {
   const res: ContentPage = {
     id,
     last_edited_time,
+    slug: "",
     section: { index: 0, title: "" },
     chapter: { index: 0, title: "" },
   };
@@ -69,14 +70,12 @@ const convertContentPage = (pageObject: PageObjectResponse) => {
         }
         break;
       }
-      // case "Slug": {
-      //   if (property.type == "rich_text") {
-      //     res.slug = property.rich_text
-      //     .map((it) => it.plain_text)
-      //     .join(" ") as string;
-      //   }
-      //   break;
-      // }
+      case "slug": {
+        if (property.type == "formula") {
+          res.slug = (property.formula as any).string;
+        }
+        break;
+      }
     }
   });
 
@@ -148,6 +147,7 @@ const convertPagesToSections = (pages: ContentPage[]) => {
 
     sections[sectionIdx].chapters.push({
       id: page.id,
+      slug: page.slug,
       last_edited_time: page.last_edited_time,
       title: page.chapter.title || "",
       index: page.chapter.index,

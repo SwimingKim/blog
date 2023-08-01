@@ -1,6 +1,7 @@
 export interface ContentPage {
   id: string;
   last_edited_time: string;
+  slug: string;
   section: {
     index: number;
     title: string;

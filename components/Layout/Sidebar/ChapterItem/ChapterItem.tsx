@@ -7,11 +7,11 @@ interface Props extends Chapter {
 }
 
 export default function ChapterItem(props: Props) {
-  const { id, title, isSelected } = props;
+  const { id, slug, title, isSelected } = props;
   const router = useRouter();
 
   const onClickItem = () => {
-    router.push(`/${id}`);
+    router.push(`/${slug}`);
   };
 
   return (

@@ -11,7 +11,6 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Section } from "types/content";
 import { useContext } from "react";
 import { PageContext } from "../../../../pages/[[...slug]]";
-import Link from "next/link";
 import ChapterItem from "../ChapterItem";
 
 interface Props extends Section {

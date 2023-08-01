@@ -14,6 +14,7 @@ import { ContentPage } from "types/notion";
 
 interface Props {
   pageID: string;
+  slug: string;
   sections: Section[];
   recordMap: ExtendedRecordMap;
   pageTitle?: string;
@@ -29,7 +30,7 @@ export const PageContext = createContext<PageContextData>(null as any);
 let loaded_pages = [] as ContentPage[];
 export default function Page(props: Props) {
   const router = useRouter();
-  const { pageID, sections, pageTitle, currentSection } = props;
+  const { pageID, slug, sections, pageTitle, currentSection } = props;
 
   if (sections) {
     sections.sort((a, b) => a.index - b.index);
@@ -108,10 +109,13 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
   await loadPages();
 
   const homePageID = process.env.NOTION_HOMEPAGE_ID as string;
-  let pageID = Array.isArray(slug) ? slug[0] : homePageID;
-  if (pageID.indexOf("index") != -1) pageID = homePageID;
-
+  let pageID = homePageID;
+  if (Array.isArray(slug)) {
+    // pageID = slug[0];
+    pageID = slug[0].split("_").length > 0 ? slug[0].split("_")[1] : slug[0];
+  }
   const isContentPage = Array.isArray(slug) && slug.length === 1;
+  console.log("pageID", pageID)
 
   const [sectionsReq, recordMapReq] = await Promise.allSettled([
     getSections_V2(loaded_pages),
@@ -152,7 +156,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
       currentSection: currentSection,
       sections: sections,
       recordMap: recordMap,
-      // slug: slug,
+      slug: slug ?? "index",
     },
     revalidate: 1,
   };

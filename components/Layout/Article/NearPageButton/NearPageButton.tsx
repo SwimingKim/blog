@@ -14,10 +14,10 @@ interface Props extends Chapter {
 }
 export default function NearPageButton(props: Props) {
   const router = useRouter();
-  const { type, title, id } = props;
+  const { type, title, slug } = props;
 
   const onClickItem = () => {
-    router.push(`/${id}`);
+    router.push(`/${slug}`);
   };
 
   return (
